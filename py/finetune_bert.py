@@ -46,7 +46,7 @@ cmd = f'''
         --do_eval \
         --max_steps 5000 \
         --save_steps 2000 \
-        --output_dir "results/test_01"
+        --output_dir "{output_dir}"
 '''
 print("execute the following command in the shell")
 print(cmd)
