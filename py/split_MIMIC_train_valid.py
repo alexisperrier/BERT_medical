@@ -9,12 +9,12 @@ import re
 
 # replace with your own file path
 MIMIC_PATH = "/home/alexis/data/MIMIC.csv"
-TRAIN_PATH = "/home/alexis/data/MIMIC_train_samp50k.txt"
-VALID_PATH = "/home/alexis/data/MIMIC_valid_samp50k.txt"
+TRAIN_PATH = "/home/alexis/data/MIMIC_train_samp100k.txt"
+VALID_PATH = "/home/alexis/data/MIMIC_valid_samp100k.txt"
 # train, validation ratio
 training_ratio = 0.8
 # limit to N samples for testing
-N = 50000
+N = 100000
 
 REGEX_PATTERNS = {
     'linereturns': {'regex': "[\r\n]+", 'sub_by': ' '},
