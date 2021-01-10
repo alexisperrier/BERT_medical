@@ -9,8 +9,8 @@ import re
 
 # replace with your own file path
 MIMIC_PATH = "/home/alexis/data/MIMIC.csv"
-TRAIN_PATH = "/home/alexis/data/MIMIC_train_samp50k.csv"
-VALID_PATH = "/home/alexis/data/MIMIC_valid_samp50k.csv"
+TRAIN_PATH = "/home/alexis/data/MIMIC_train_samp50k.txt"
+VALID_PATH = "/home/alexis/data/MIMIC_valid_samp50k.txt"
 # train, validation ratio
 training_ratio = 0.8
 # limit to N samples for testing
