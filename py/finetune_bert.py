@@ -11,9 +11,6 @@ import os, sys, re, csv, json
 import numpy as np
 import pandas as pd
 
-import transformers
-import datasets
-
 # uncomment to install transformers and datasets
 # !pip install datasets
 # !pip install transfomers
@@ -35,7 +32,7 @@ train_filepath  = "/home/alexis/data/MIMIC_train_samp100k.txt"
 valid_filepath  = "/home/alexis/data/MIMIC_valid_samp100k.txt"
 max_steps       = 5000 # the bigger, the longer it tales to train the model
 save_steps      = 2000 # each time, a snapshot of the model is saved. Warning this can take a lot of space
-output_dir      = "./models/test_01/" # where the model snapshots and the final model is saved
+output_dir      = "/home/alexis/amcp/BERT_medical/models/test_02/" # where the model snapshots and the final model is saved
 
 # execute in the
 cmd = f'''
@@ -54,41 +51,45 @@ cmd = f'''
 print("execute the following command in the shell")
 print(cmd)
 
-
-'''
-Loading the fine tuned model
-see Appendix A1 in https://mccormickml.com/2019/07/22/BERT-fine-tuning/
-'''
-# Load a trained model and vocabulary that you have fine-tuned
-output_dir = "../models/"
-from transformers import BertForMaskedLM
-model = BertForMaskedLM.from_pretrained(output_dir)
-# or
-# from transformers import AutoModelForMaskedLM
-# model = AutoModelForMaskedLM.from_pretrained(output_dir)
-from transformers import BertTokenizer
-tokenizer = BertTokenizer.from_pretrained(output_dir)
-
-from transformers import BertConfig
-config = BertConfig.from_pretrained(output_dir)
+if False:
+    import transformers
+    import datasets
 
 
-'''
-Access to word and sentence vectors
-https://towardsdatascience.com/beyond-classification-with-transformers-and-hugging-face-d38c75f574fb
-'''
+    '''
+    Loading the fine tuned model
+    see Appendix A1 in https://mccormickml.com/2019/07/22/BERT-fine-tuning/
+    '''
+    # Load a trained model and vocabulary that you have fine-tuned
+    output_dir = "../models/"
+    from transformers import BertForMaskedLM
+    model = BertForMaskedLM.from_pretrained(output_dir)
+    # or
+    # from transformers import AutoModelForMaskedLM
+    # model = AutoModelForMaskedLM.from_pretrained(output_dir)
+    from transformers import BertTokenizer
+    tokenizer = BertTokenizer.from_pretrained(output_dir)
 
-from transformers import BertForMaskedLM
-model = BertForMaskedLM.from_pretrained(output_dir, output_hidden_states=True)
+    from transformers import BertConfig
+    config = BertConfig.from_pretrained(output_dir)
 
-# put this in eval mode
-model.eval()
 
-input_ids, attention_masks, attention_masks_without_special_tok = preprocessing_for_bert(texts, tokenizer)
+    '''
+    Access to word and sentence vectors
+    https://towardsdatascience.com/beyond-classification-with-transformers-and-hugging-face-d38c75f574fb
+    '''
 
-#call the model on the sentences
-outputs = model(input_ids, attention_masks) #(tokenized_tensor, sent_tensor)
-hidden_states = outputs[2]
+    from transformers import BertForMaskedLM
+    model = BertForMaskedLM.from_pretrained(output_dir, output_hidden_states=True)
+
+    # put this in eval mode
+    model.eval()
+
+    input_ids, attention_masks, attention_masks_without_special_tok = preprocessing_for_bert(texts, tokenizer)
+
+    #call the model on the sentences
+    outputs = model(input_ids, attention_masks) #(tokenized_tensor, sent_tensor)
+    hidden_states = outputs[2]
 
 
 
