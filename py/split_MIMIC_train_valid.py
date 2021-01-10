@@ -9,12 +9,13 @@ import re
 
 # replace with your own file path
 MIMIC_PATH = "/home/alexis/data/MIMIC.csv"
-TRAIN_PATH = "/home/alexis/data/MIMIC_train_samp100k.txt"
-VALID_PATH = "/home/alexis/data/MIMIC_valid_samp100k.txt"
+TRAIN_PATH = "/home/alexis/data/MIMIC_train.txt"
+VALID_PATH = "/home/alexis/data/MIMIC_valid.txt"
 # train, validation ratio
 training_ratio = 0.8
 # limit to N samples for testing
-N = 100000
+# N = 100000
+N = None
 
 REGEX_PATTERNS = {
     'linereturns': {'regex': "[\r\n]+", 'sub_by': ' '},
@@ -55,17 +56,19 @@ if __name__ == "__main__":
         [**2120-6-2**]
         ____
     '''
-    print("Regex - clean up")
+    print("Regex - linereturns")
     df['TEXT'] = df.TEXT.apply(lambda  txt : re.sub(
                                         REGEX_PATTERNS['linereturns']['regex'],
                                         REGEX_PATTERNS['linereturns']['sub_by'],
                                         txt   ))
 
+    print("Regex - underscore")
     df['TEXT'] = df.TEXT.apply(lambda  txt : re.sub(
                                         REGEX_PATTERNS['multiple_underscore']['regex'],
                                         REGEX_PATTERNS['multiple_underscore']['sub_by'],
                                         txt   ))
 
+    print("Regex - multiple_spaces")
     df['TEXT'] = df.TEXT.apply(lambda  txt : re.sub(
                                         REGEX_PATTERNS['multiple_spaces']['regex'],
                                         REGEX_PATTERNS['multiple_spaces']['sub_by'],

@@ -28,11 +28,11 @@ import pandas as pd
 # set the parameters
 # TODO change for json file
 model_name      = 'bert-base-uncased'
-train_filepath  = "/home/alexis/data/MIMIC_train_samp100k.txt"
-valid_filepath  = "/home/alexis/data/MIMIC_valid_samp100k.txt"
+train_filepath  = "/home/alexis/data/MIMIC_train.txt"
+valid_filepath  = "/home/alexis/data/MIMIC_valid.txt"
 max_steps       = 5000 # the bigger, the longer it tales to train the model
 save_steps      = 2000 # each time, a snapshot of the model is saved. Warning this can take a lot of space
-output_dir      = "/home/alexis/amcp/BERT_medical/models/test_02/" # where the model snapshots and the final model is saved
+output_dir      = "/home/alexis/amcp/BERT_medical/models/full/" # where the model snapshots and the final model is saved
 
 # execute in the
 cmd = f'''
