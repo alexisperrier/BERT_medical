@@ -51,47 +51,5 @@ cmd = f'''
 print("execute the following command in the shell")
 print(cmd)
 
-if False:
-    import transformers
-    import datasets
-
-
-    '''
-    Loading the fine tuned model
-    see Appendix A1 in https://mccormickml.com/2019/07/22/BERT-fine-tuning/
-    '''
-    # Load a trained model and vocabulary that you have fine-tuned
-    output_dir = "../models/"
-    from transformers import BertForMaskedLM
-    model = BertForMaskedLM.from_pretrained(output_dir)
-    # or
-    # from transformers import AutoModelForMaskedLM
-    # model = AutoModelForMaskedLM.from_pretrained(output_dir)
-    from transformers import BertTokenizer
-    tokenizer = BertTokenizer.from_pretrained(output_dir)
-
-    from transformers import BertConfig
-    config = BertConfig.from_pretrained(output_dir)
-
-
-    '''
-    Access to word and sentence vectors
-    https://towardsdatascience.com/beyond-classification-with-transformers-and-hugging-face-d38c75f574fb
-    '''
-
-    from transformers import BertForMaskedLM
-    model = BertForMaskedLM.from_pretrained(output_dir, output_hidden_states=True)
-
-    # put this in eval mode
-    model.eval()
-
-    input_ids, attention_masks, attention_masks_without_special_tok = preprocessing_for_bert(texts, tokenizer)
-
-    #call the model on the sentences
-    outputs = model(input_ids, attention_masks) #(tokenized_tensor, sent_tensor)
-    hidden_states = outputs[2]
-
-
-
 
 # -----
